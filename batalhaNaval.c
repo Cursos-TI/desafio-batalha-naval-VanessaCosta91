@@ -1,4 +1,4 @@
-#include <stdio.h>
+    #include <stdio.h>
 
 # define LINHAS 10
 # define COLUNAS 10
@@ -8,34 +8,40 @@ int main() {
 
     char linha[LINHAS] = {'A','B','C','D','E','F','G','H','I','J'};    
     int tabuleiro[LINHAS][COLUNAS] = {0}; 
-    int navioHorizontal[3] = {3,3,3};
-    int navioVertical[3] = {3,3,3};
-    int diagonal1[3] = {3,3,3};
-    int diagonal2[3] = {3,3,3};
+    int navioCone[3][5] = {{0,0,1,0,0}, {0,1,1,1,0}, {1,1,1,1,1}} ;
+    int navioCruz[3][5] = {{0,0,1,0,0}, {1,1,1,1,1}, {0,0,1,0,0}};
+    int navioOctaedro[3][5] = {{0,0,1,0,0}, {0,1,1,1,0}, {0,0,1,0,0}};
 
     // Coordenadas iniciais
-    int linhaH = 6, colunaH = 6; 
-    int linhaV = 5, colunaV = 1;
-    int linhaD1 = 0, colunaD1 = 0;
-    int linhaD2 = 0, colunaD2 = 9;
+    int linhaCone = 2, colunaCone = 4; 
+    int linhaCruz= 6, colunaCruz = 2;
+    int linhaOctaedro = 0, colunaOctaedro = 0;
     
-    // Diagonal principal 
+    //  Navio Cone
     for (int i=0; i<3; i++) {
-        tabuleiro[linhaD1+i][colunaD1+i] = diagonal1[i];
+        for (int j=0; j<5; j++) {
+            if (navioCone[i][j]==1) {
+            tabuleiro[linhaCone+i][colunaCone+j] = 5;
+            }
+        }
     }
 
-    // Diagonal inversa
+    //  Navio Cruz
     for (int i=0; i<3; i++) {
-        tabuleiro[linhaD2+i][colunaD2-i] = diagonal2[i];
+        for (int j=0; j<5; j++) {
+            if (navioCruz[i][j]==1) {
+            tabuleiro[linhaCruz+i][colunaCruz+j] =  5;
+            }
+        }
     }
 
-    // Horizontal
-    for(int i = 0; i < 3; i++) {
-        tabuleiro[linhaH][colunaH + i] = navioHorizontal[i];
-    }
-    // Vertical
-     for(int i = 0; i < 3; i++) {
-        tabuleiro[linhaV + i][colunaV] = navioVertical[i];
+    //  Navio Octaedro
+    for (int i=0; i<3; i++) {        
+        for (int j=0; j<5; j++) {
+            if (navioOctaedro[i][j] == 1) {
+            tabuleiro[linhaOctaedro+i][colunaOctaedro+j] =  5;
+            }
+        }
     }
 
     // Motra tabuleiro
